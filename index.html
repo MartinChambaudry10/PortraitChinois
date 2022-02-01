@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Portrait Chinois | Martin Chambaudry</title>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+    <section class="sec">
+        <h1 class="title">Mon Portrait Chinois<br> Martin Chambaudry</h1>
+        <button><a class=
+            "bouton"href="#mentionslegales">Mentions Légales</a></button>
+        
+        
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+
+
+        <main>
+            <p class="navigation">
+                <a class="abc" href="#film">🎥Un film</a>
+                <a class="abc" href="#animal">🐈Un animal</a>
+                <a class="abc" href="#pays">🏳️Un pays</a>
+                <a class="abc" href="#qualité">🧠Une qualité</a>
+                <a class="abc" href="#morale">🐇🐢Une morale</a>
+                <a class="abc" href="#couleur">🔴Une couleur</a>
+                <a class="abc" href="#sport">🏆Un sport</a>
+            </p>
+        </main>
+       
+    </section>
+<div id="list-analogies"></div>
+
+
+<section>
+    <div class="container" id="container">
+        <h1>Contact</h1>
+        <form action="index.html">
+         <br><label for="fname">Nom & prénom</label>
+         <input type="text" id="fname" name="firstname" placeholder="Votre nom et prénom">
+
+         <label for="subject">Message</label>
+         <textarea id="subject" name="subject" placeholder="Votre message" style="height:200px"></textarea>
+
+         <input type="submit" value="Envoyer">
+     </form>
+
+ </div><br><br><br><br><br>
+</section>
+
+<section>
+ <div class="container">
+    <div class="list-analogies">
+
+        <h2>Si j’étais <span id="analogieSuggeree"></span>, je serais <span id="valeurAnalogieSuggeree"></span>.
+        </h2>
+        
+
+    </div>
+
+    <form class="form"> 
+        <br>
+        <label for="analogie">Et si c'était a vous de choisir </label>
+        <br>
+        <input type="text" id="analogie" placeholder="Analogie" name="analogie" required>
+        <br>
+        <label for="valeurAnalogie">Vous auriez été ?</label>
+        <br>
+        <input type="text" id="valeurAnalogie" placeholder="Valeur analogie" name="valeurAnalogie" required>
+        <br>
+        <label for="courriel">Votre adresse mail :</label>
+        <br>
+        <input type="email" id="courriel" placeholder="Saisir votre E-mail"name="courriel" required>
+        <br>
+        <input type="button" id="envoi" value="Envoyer le message !">
+        <div id="messageApresEnvoi"></div>
+    </form>
+</div>
+
+</section>
+
+
+
+<script src="data.js"></script>
+<script>
+
+    document.querySelector("#envoi").addEventListener('click', function (e) {
+        var urlVisitee = "https://perso-etudiant.u-pem.fr/~gambette/portrait/api.php?format=json&login=gambette&courriel=" + document.querySelector("#courriel").value + "&message=Si j'étais ... " + document.querySelector("#analogie").value + " je serais ... " + document.querySelector("#valeurAnalogie").value;
+        fetch(urlVisitee).then(function (response) {
+            response.json().then(function (data) {
+
+                if(data.status == "success"){
+                    document.querySelector("#messageApresEnvoi").innerHTML = "Votre message a été reçu avec succés 👍";
+                }else{
+                    document.querySelector("#messageApresEnvoi").innerHTML = "Oups: votre message n'a pas pu étre reçu";
+                }
+            })
+        })
+
+    })
+
+    document.querySelector("#analogie").addEventListener('keyup', function (e) {
+        console.log("Champ analogie modifié");
+
+        document.querySelector("#analogieSuggeree").innerHTML = document.querySelector("#analogie").value;
+    })
+
+    document.querySelector("#valeurAnalogie").addEventListener('keyup', function (e) {
+        console.log("Champ valeurAnalogie modifié");
+
+        document.querySelector("#valeurAnalogieSuggeree").innerHTML = document.querySelector("#valeurAnalogie").value;
+    })
+    console.log(analogies);
+
+    analogies.forEach(function afficheNote(analogie) {
+
+        console.log("Si j'étais " + analogie);
+        console.log("<section><h2>Si j’étais " + analogie + ", je serais [une valeur de l’analogie].</h2></section>");
+
+        document.querySelector('.liste-analogies').innerHTML += "<section><h2>Si j’étais " + analogie + ", je serais [une valeur de l’analogie].</h2></section>";
+
+    })
+
+    data1.forEach(function afficheNote(analogie) {
+        document.querySelector(".btn-submit").addEventListener("click", function(submit) {
+
+          setTimeout(function (){
+            document.querySelector('#list-new-analogies').innerHTML +=  "<section id='new'><p>Si j’étais " + document.querySelector("#analogie").value + ", je serais...</p><h2 class='analogie'>" + document.querySelector("#valeurAnalogie").value + "</h2><p class='text'>"+ document.querySelector("#descriptionanalogie").value +" .</p><img src="+document.querySelector("#imagesanalogie").value+" alt='' class='img'></section>"});
+          console.log()
+      })
+    })
+
+
+
+</script>
+<footer>
+<section id="mentionslegales">
+    
+            <h3> Mentions légales </h3>
+
+            <div class="contenu-footer">
+            
+                    <div>
+                        <h4>Création</h4>
+                        <ul>
+                            <li>publication : Martin Chambaudry</li>
+                            <li>Illustrations: Martin Chambaudry</li>
+                            <li> Conception du site & conception graphique réalisés par : Martin Chambaudry</li>
+                        </ul>
+                    </div><br>
+
+                   <div>
+                    <h4>Hébergement</h4>
+                    <ul>
+                        <li>Identité : Université Gustave Eiffel </li>
+                        <li>Localisation : 2 rue Albert Einstein, 77420 Champs-sur-Marne, France</li>
+                        <li>Téléphone : +33 (0)1 60 95 75 00</li>
+                        <li>Adresse mail : webmaster@univ-eiffel.fr</li>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>martinchambaudry@gmail.com </li>
+                        <li> Tél : 07.86.30.65.61 </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Régles</h4>
+                    <ul>
+                        <li>
+                            Conformément à l'article 15 du Règlement général sur la protection des données (RGPD) du 27 avril 2016,<br> vous disposez d'un droit d'accès aux informations vous concernant. <br>Si vous trouvez que ces informations sont incorrectes, l'article 16 du RGPD vous permet de les modifier ou de les supprimer.<br> Dans ce cas, merci de contacter le Directeur de la Communication : com@univ-eiffel.fr.
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Remerciment</h4>
+                    <ul>
+                        <li>
+                             Gaëlle  Charpentier , Philippe Gambette et Matthieu Berthet 
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+</section>
+</footer>
+
+
+
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
